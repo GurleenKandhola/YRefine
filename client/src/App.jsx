@@ -1,30 +1,24 @@
 import { useState } from "react";
-import "./App.css";
+import SearchBar from "./components/SearchBar";
+import VideoList from "./components/VideoList";
 
 function App() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
-
+  const searchVideos = async (query) => {
     setLoading(true);
-    setError("");
+    setVideos([]);
 
     try {
-      const res = await fetch(`/api/search?q=${query}`);
+      const res = await fetch(
+        `http://localhost:5000/api/search?q=${query}`
+      );
       const data = await res.json();
 
-      console.log("API response:", data);
-      console.log("First item:", data.items?.[0]);
-
-      // Defensive: ensure items is always an array
-      setResults(Array.isArray(data.items) ? data.items : []);
-    } catch (err) {
-      console.error("Search error:", err);
-      setError("Failed to fetch videos. Please try again.");
+      setVideos(data.items || []);
+    } catch (error) {
+      console.error("Error fetching videos", error);
     } finally {
       setLoading(false);
     }
@@ -34,38 +28,11 @@ function App() {
     <div className="app">
       <h1>YouTube Search Refinement</h1>
 
-      {/* Search bar */}
-      <div className="search-box">
-        <input
-          type="text"
-          placeholder="Search YouTube..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        />
-        <button onClick={handleSearch}>Search</button>
-      </div>
+      <SearchBar onSearch={searchVideos} />
 
-      {/* Loading state */}
-      {loading && <p>Loading results...</p>}
+      {loading && <p className="loading">Loading...</p>}
 
-      {/* Error state */}
-      {error && <p className="error">{error}</p>}
-
-      {/* Results */}
-      <ul className="results">
-        {results.map((video) => (
-          <li key={video.videoId} className="video-card">
-            <img src={video.thumbnail} alt={video.title} />
-            <p>{video.title}</p>
-            <small>{video.channelTitle}</small>
-          </li>
-        ))}
-      </ul>
-
-      {/* No results */}
-      {!loading && query && results.length === 0 && (
-        <p>No videos found.</p>
-      )}
+      {!loading && <VideoList videos={videos} />}
     </div>
   );
 }
