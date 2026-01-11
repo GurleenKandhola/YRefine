@@ -1,7 +1,6 @@
-const express = require("express");
-const cors = require("cors");
-
-const searchRoutes = require("./routes/searchRoutes");
+import express from "express";
+import cors from "cors";
+import searchRoutes from "./routes/searchRoutes.js";
 
 const app = express();
 
@@ -15,4 +14,4 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api", searchRoutes);
 
-module.exports = app;
+export default app;
