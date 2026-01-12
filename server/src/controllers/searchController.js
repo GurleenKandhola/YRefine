@@ -6,7 +6,7 @@ export const searchVideos = async (req, res) => {
   try {
     const query = req.query.q;
 
-    if (!query) {
+    if (!query || !query.trim()) {
       return res.status(400).json({ error: "Query is required" });
     }
 
@@ -16,26 +16,31 @@ export const searchVideos = async (req, res) => {
         params: {
           part: "snippet",
           q: query,
-          maxResults: 10,
+          maxResults: 20,
           key: process.env.YOUTUBE_API_KEY,
-          type: "video"
-        }
+          type: "video",
+        },
       }
     );
 
-    const videos = ytResponse.data.items.map(item => ({
+    const videos = ytResponse.data.items.map((item) => ({
       videoId: item.id.videoId,
       title: item.snippet.title,
       description: item.snippet.description,
       channelTitle: item.snippet.channelTitle,
       thumbnail: item.snippet.thumbnails.medium.url,
-      publishedAt: item.snippet.publishedAt
+      publishedAt: item.snippet.publishedAt,
     }));
 
-    // 🔥 Fetch transcripts
+    // Fetch transcripts safely
     const videosWithTranscript = await Promise.all(
-      videos.map(async video => {
-        const transcript = await getTranscript(video.videoId);
+      videos.map(async (video) => {
+        let transcript = "";
+        try {
+          transcript = await getTranscript(video.videoId);
+        } catch (err) {
+          console.warn(`No transcript for ${video.videoId}`);
+        }
         return { ...video, transcript };
       })
     );
@@ -45,9 +50,8 @@ export const searchVideos = async (req, res) => {
     res.json({
       query,
       count: rankedVideos.length,
-      items: rankedVideos
+      items: rankedVideos,
     });
-
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Server error while searching videos" });

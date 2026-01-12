@@ -60,3 +60,17 @@ body {
   margin-top: 20px;
   font-weight: bold;
 }
+
+.score {
+  margin: 6px 0;
+  font-size: 14px;
+  background: #eef3ff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.channel {
+  color: #555;
+  font-size: 14px;
+}

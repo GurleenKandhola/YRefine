@@ -2,8 +2,15 @@ function VideoCard({ video }) {
   return (
     <div className="video-card">
       <img src={video.thumbnail} alt={video.title} />
+
       <h3>{video.title}</h3>
-      <p>{video.channelTitle}</p>
+
+      <p className="channel">{video.channelTitle}</p>
+
+      <p className="score">
+        Relevance Score: <strong>{video.score}</strong>
+      </p>
+
       <small>{new Date(video.publishedAt).toDateString()}</small>
 
       <a

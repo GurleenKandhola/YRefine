@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import SearchBar from "./components/SearchBar";
 import VideoList from "./components/VideoList";
 
@@ -6,23 +6,28 @@ function App() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const searchVideos = async (query) => {
+  const searchVideos = useCallback(async (query) => {
+    if (!query.trim()) return;
+
     setLoading(true);
-    setVideos([]);
 
     try {
-      const res = await fetch(
-        `http://localhost:5000/api/search?q=${query}`
-      );
+      const res = await fetch(`http://localhost:5000/api/search?q=${query}`);
       const data = await res.json();
 
-      setVideos(data.items || []);
+      // Check for data.items
+      if (data.items && data.items.length > 0) {
+        setVideos(data.items);
+      } else {
+        setVideos([]); // no results
+      }
     } catch (error) {
       console.error("Error fetching videos", error);
+      setVideos([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   return (
     <div className="app">
@@ -32,7 +37,9 @@ function App() {
 
       {loading && <p className="loading">Loading...</p>}
 
-      {!loading && <VideoList videos={videos} />}
+      {!loading && videos.length === 0 && <p>No videos found</p>}
+
+      {!loading && videos.length > 0 && <VideoList videos={videos} />}
     </div>
   );
 }
