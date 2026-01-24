@@ -1,27 +1,192 @@
-# YRefine
+YRefine is a full-stack YouTube search enhancement project that improves the relevance of YouTube search results using NLP techniques, transcript analysis, and AI-based ranking.
 
-YRefine is a YouTube Search Refinement web application built using React and Node.js.
-It allows users to search YouTube videos with refined filters and cleaner results.
+Instead of relying only on YouTube’s default ranking, YRefine fetches video metadata and transcripts, computes relevance scores, and ranks videos using TF-IDF and cosine similarity.
 
-## Project Structure
-- client/  → React (Vite) frontend
-- server/  → Node.js + Express backend
-- docs/    → screenshots and notes
+Core Features
 
-## Tech Stack
-- React (Vite)
-- Node.js
-- Express
-- YouTube Data API v3
+Custom YouTube search using YouTube Data API
 
-## Run Locally
+Relevance-based video ranking
 
-### Backend
+AI/NLP-powered ranking using:
+
+TF-IDF vectorization
+
+Cosine similarity
+
+Transcript-based relevance analysis
+
+Debounced search (optimized API usage)
+
+Relevance score displayed on frontend
+
+Advanced Enhancements
+
+Graceful handling of missing transcripts
+
+Backend modular architecture
+
+Clean REST API design
+
+
+Tech Stack
+Frontend
+
+React (Vite)
+
+JavaScript (ES6+)
+
+Fetch API
+
+CSS
+
+Backend
+
+Node.js
+
+Express.js
+
+YouTube Data API v3
+
+Axios
+
+NLP utilities (TF-IDF, cosine similarity)
+
+Tools & Concepts
+
+REST APIs
+
+NLP (TF-IDF, cosine similarity)
+
+Debouncing
+
+Git & GitHub
+
+Modular backend architecture
+
+Project Structure
+YRefine/
+│
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── SearchBar.jsx
+│   │   │   └── VideoList.jsx
+│   │   ├── App.jsx
+│   │   └── main.jsx
+│
+├── server/                 # Express backend
+│   ├── src/
+│   │   ├── controllers/
+│   │   │   └── searchController.js
+│   │   ├── routes/
+│   │   │   └── searchRoutes.js
+│   │   ├── utils/
+│   │   │   ├── rankVideos.js
+│   │   │   ├── rankVideosTFIDF.js
+│   │   │   └── getTranscript.js
+│   │   ├── app.js
+│   │   └── server.js
+│
+├── README.md
+└── .gitignore
+
+How It Works
+
+User enters a search query in the frontend
+
+Frontend sends request to backend (/api/search)
+
+Backend:
+
+Fetches videos from YouTube API
+
+Retrieves transcripts (when available)
+
+Converts text into TF-IDF vectors
+
+Calculates cosine similarity with query
+
+Ranks videos by relevance score
+
+Ranked results are sent back to frontend
+
+Frontend displays videos with relevance score
+
+AI / ML Concepts Used
+TF-IDF (Term Frequency–Inverse Document Frequency)
+
+Measures how important a word is in a document relative to others
+
+Helps reduce noise from common words
+
+Cosine Similarity
+
+Measures similarity between query and video text vectors
+
+Produces a relevance score between 0 and 1
+
+Why This Matters
+
+This approach mimics real-world search engines and demonstrates practical NLP usage without heavy ML frameworks.
+
+Local Setup Instructions
+1. Clone the repository
+git clone https://github.com/GurleenKandhola/YRefine.git
+cd YRefine
+
+2. Backend Setup
 cd server
 npm install
+
+
+Create a .env file:
+
+YOUTUBE_API_KEY=your_api_key_here
+PORT=5000
+
+
+Run backend:
+
 npm run dev
 
-### Frontend
-cd client
+3. Frontend Setup
+cd ../client
 npm install
 npm run dev
+
+4. Open in browser
+http://localhost:5173
+
+System Requirements
+
+Node.js v20+
+
+RAM: 4GB sufficient (project optimized for low-resource machines)
+
+Internet connection (YouTube API)
+
+Known Limitations
+
+Some videos do not provide transcripts
+
+YouTube API quota limits apply
+
+Ranking is NLP-based (not deep learning)
+
+Future Improvements
+
+Transcript caching with Redis
+
+Transformer-based embeddings
+
+User-based personalization
+
+Deployment (Render + Netlify)
+
+Analytics dashboard
+
+Author
+
+Gurleen Kaur
+Computer Science Engineer
