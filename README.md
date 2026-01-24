@@ -2,70 +2,70 @@ YRefine is a full-stack YouTube search enhancement project that improves the rel
 
 Instead of relying only on YouTube’s default ranking, YRefine fetches video metadata and transcripts, computes relevance scores, and ranks videos using TF-IDF and cosine similarity.
 
-Core Features
+1. Core Features
 
-Custom YouTube search using YouTube Data API
+    Custom YouTube search using YouTube Data API
 
-Relevance-based video ranking
+    Relevance-based video ranking
 
-AI/NLP-powered ranking using:
+    AI/NLP-powered ranking using:
 
-TF-IDF vectorization
+        TF-IDF vectorization
 
-Cosine similarity
+        Cosine similarity
 
-Transcript-based relevance analysis
+    Transcript-based relevance analysis
 
-Debounced search (optimized API usage)
+    Debounced search (optimized API usage)
 
-Relevance score displayed on frontend
+    Relevance score displayed on frontend
 
-Advanced Enhancements
+2.Advanced Enhancements
 
-Graceful handling of missing transcripts
+    Graceful handling of missing transcripts
 
-Backend modular architecture
+    Backend modular architecture
 
-Clean REST API design
+    Clean REST API design
 
 
-Tech Stack
-Frontend
+3. Tech Stack
+    Frontend
 
-React (Vite)
+        React (Vite)
 
-JavaScript (ES6+)
+        JavaScript (ES6+)
 
-Fetch API
+        Fetch API
 
-CSS
+        CSS
 
-Backend
+    Backend
 
-Node.js
+        Node.js
 
-Express.js
+        Express.js
 
-YouTube Data API v3
+        YouTube Data API v3
 
-Axios
+        Axios
 
-NLP utilities (TF-IDF, cosine similarity)
+        NLP utilities (TF-IDF, cosine similarity)
 
-Tools & Concepts
+4. Tools & Concepts
 
-REST APIs
+    REST APIs
 
-NLP (TF-IDF, cosine similarity)
+    NLP (TF-IDF, cosine similarity)
 
-Debouncing
+    Debouncing
 
-Git & GitHub
+    Git & GitHub
 
-Modular backend architecture
+    Modular backend architecture
 
-Project Structure
-YRefine/
+5. Project Structure
+YYRefine/
 │
 ├── client/                 # React frontend
 │   ├── src/
@@ -91,100 +91,96 @@ YRefine/
 ├── README.md
 └── .gitignore
 
-How It Works
+6. How It Works
 
-User enters a search query in the frontend
+    User enters a search query in the frontend
 
-Frontend sends request to backend (/api/search)
+    Frontend sends request to backend (/api/search)
 
-Backend:
+    Backend:
 
-Fetches videos from YouTube API
+        Fetches videos from YouTube API
 
-Retrieves transcripts (when available)
+        Retrieves transcripts (when available)
 
-Converts text into TF-IDF vectors
+        Converts text into TF-IDF vectors
 
-Calculates cosine similarity with query
+        Calculates cosine similarity with query
 
-Ranks videos by relevance score
+        Ranks videos by relevance score
 
-Ranked results are sent back to frontend
+    Ranked results are sent back to frontend
 
-Frontend displays videos with relevance score
+    Frontend displays videos with relevance score
 
-AI / ML Concepts Used
-TF-IDF (Term Frequency–Inverse Document Frequency)
+7. AI / ML Concepts Used
+    TF-IDF (Term Frequency–Inverse Document Frequency)
 
-Measures how important a word is in a document relative to others
+        Measures how important a word is in a document relative to others
 
-Helps reduce noise from common words
+        Helps reduce noise from common words
 
-Cosine Similarity
+    Cosine Similarity
 
-Measures similarity between query and video text vectors
+        Measures similarity between query and video text vectors
 
-Produces a relevance score between 0 and 1
+        Produces a relevance score between 0 and 1
 
-Why This Matters
-
-This approach mimics real-world search engines and demonstrates practical NLP usage without heavy ML frameworks.
-
-Local Setup Instructions
-1. Clone the repository
+8. Local Setup Instructions
+    1. Clone the repository
 git clone https://github.com/GurleenKandhola/YRefine.git
 cd YRefine
 
-2. Backend Setup
-cd server
-npm install
+    2. Backend Setup
+        cd server
+        npm install
 
 
-Create a .env file:
+        Create a .env file:
 
-YOUTUBE_API_KEY=your_api_key_here
-PORT=5000
+            YOUTUBE_API_KEY=your_api_key_here
+            PORT=5000
 
 
-Run backend:
+        Run backend:
 
-npm run dev
+            npm run dev
 
-3. Frontend Setup
-cd ../client
-npm install
-npm run dev
+    3. Frontend Setup
+        cd ../client
+        npm install
+        npm run dev
 
-4. Open in browser
-http://localhost:5173
+    4. Open in browser
+        http://localhost:5173
 
-System Requirements
+    System Requirements
 
-Node.js v20+
+        Node.js v20+
 
-RAM: 4GB sufficient (project optimized for low-resource machines)
+        RAM: 4GB sufficient (project optimized for low-resource machines)
 
-Internet connection (YouTube API)
+        Internet connection (YouTube API)
 
-Known Limitations
+9. Known Limitations
 
-Some videos do not provide transcripts
+    Some videos do not provide transcripts
 
-YouTube API quota limits apply
+    YouTube API quota limits apply
 
-Ranking is NLP-based (not deep learning)
+    Ranking is NLP-based (not deep learning)
 
-Future Improvements
+10. Future Improvements
 
-Transcript caching with Redis
+    Transcript caching with Redis
 
-Transformer-based embeddings
+    Transformer-based embeddings
 
-User-based personalization
+    User-based personalization
 
-Deployment (Render + Netlify)
+    Deployment (Render + Netlify)
 
-Analytics dashboard
+    Analytics dashboard
 
 Author
 
