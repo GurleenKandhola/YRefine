@@ -20,7 +20,7 @@ Instead of relying only on YouTube’s default ranking, YRefine fetches video me
 
     Relevance score displayed on frontend
 
-2.Advanced Enhancements
+2. Advanced Enhancements
 
     Graceful handling of missing transcripts
 
@@ -65,28 +65,29 @@ Instead of relying only on YouTube’s default ranking, YRefine fetches video me
     Modular backend architecture
 
 5. Project Structure
-YYRefine/
+YRefine/
+├── client/ # React frontend
+│ ├── src/
+│ │ ├── components/
+│ │ ├── pages/
+│ │ ├── services/
+│ │ └── App.jsx
+│ └── package.json
 │
-├── client/                 # React frontend
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── SearchBar.jsx
-│   │   │   └── VideoList.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│
-├── server/                 # Express backend
-│   ├── src/
-│   │   ├── controllers/
-│   │   │   └── searchController.js
-│   │   ├── routes/
-│   │   │   └── searchRoutes.js
-│   │   ├── utils/
-│   │   │   ├── rankVideos.js
-│   │   │   ├── rankVideosTFIDF.js
-│   │   │   └── getTranscript.js
-│   │   ├── app.js
-│   │   └── server.js
+├── server/ # Node.js + Express backend
+│ ├── src/
+│ │ ├── controllers/
+│ │ │ └── searchController.js
+│ │ ├── routes/
+│ │ │ └── searchRoutes.js
+│ │ ├── utils/
+│ │ │ ├── rankVideos.js
+│ │ │ ├── rankVideosTFIDF.js
+│ │ │ └── getTranscript.js
+│ │ ├── app.js
+│ │ └── server.js
+│ ├── .env
+│ └── package.json
 │
 ├── README.md
 └── .gitignore
