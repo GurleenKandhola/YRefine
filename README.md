@@ -64,35 +64,7 @@ Instead of relying only on YouTube’s default ranking, YRefine fetches video me
 
     Modular backend architecture
 
-5. Project Structure
-YRefine/
-├── client/ # React frontend
-│ ├── src/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ ├── services/
-│ │ └── App.jsx
-│ └── package.json
-│
-├── server/ # Node.js + Express backend
-│ ├── src/
-│ │ ├── controllers/
-│ │ │ └── searchController.js
-│ │ ├── routes/
-│ │ │ └── searchRoutes.js
-│ │ ├── utils/
-│ │ │ ├── rankVideos.js
-│ │ │ ├── rankVideosTFIDF.js
-│ │ │ └── getTranscript.js
-│ │ ├── app.js
-│ │ └── server.js
-│ ├── .env
-│ └── package.json
-│
-├── README.md
-└── .gitignore
-
-6. How It Works
+5. How It Works
 
     User enters a search query in the frontend
 
@@ -114,7 +86,7 @@ YRefine/
 
     Frontend displays videos with relevance score
 
-7. AI / ML Concepts Used
+6. AI / ML Concepts Used
     TF-IDF (Term Frequency–Inverse Document Frequency)
 
         Measures how important a word is in a document relative to others
@@ -127,7 +99,7 @@ YRefine/
 
         Produces a relevance score between 0 and 1
 
-8. Local Setup Instructions
+7. Local Setup Instructions
     1. Clone the repository
 git clone https://github.com/GurleenKandhola/YRefine.git
 cd YRefine
@@ -163,7 +135,7 @@ cd YRefine
 
         Internet connection (YouTube API)
 
-9. Known Limitations
+8. Known Limitations
 
     Some videos do not provide transcripts
 
@@ -171,7 +143,7 @@ cd YRefine
 
     Ranking is NLP-based (not deep learning)
 
-10. Future Improvements
+9. Future Improvements
 
     Transcript caching with Redis
 
