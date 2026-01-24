@@ -37,7 +37,9 @@ function App() {
 
       {loading && <p className="loading">Loading...</p>}
 
-      {!loading && videos.length === 0 && <p>No videos found</p>}
+      {!loading && videos && videos.length === 0 && (
+        <p>No videos found</p>
+      )}
 
       {!loading && videos.length > 0 && <VideoList videos={videos} />}
     </div>

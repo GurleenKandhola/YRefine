@@ -1,5 +1,5 @@
 import axios from "axios";
-import { rankVideos } from "../utils/rankVideos.js";
+import { rankVideosTFIDF } from "../utils/rankVideosTFIDF.js";
 import { getTranscript } from "../utils/getTranscript.js";
 
 export const searchVideos = async (req, res) => {
@@ -45,7 +45,7 @@ export const searchVideos = async (req, res) => {
       })
     );
 
-    const rankedVideos = rankVideos(videosWithTranscript, query);
+    const rankedVideos = rankVideosTFIDF(videosWithTranscript, query);
 
     res.json({
       query,
